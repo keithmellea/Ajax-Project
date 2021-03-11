@@ -15,8 +15,22 @@ const getKittenImg = async () => {
           alert("Something went wrong! Please try again!")
       }
 
+let upvote = document.getElementById("upvote");
+let downvote = document.getElementById("downvote");
 
-
+upvote.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+})
+ async function kittenUpvote(score) {
+    const res = await fetch("/kitten/upvote", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "applications/json",
+      },
+      body: JSON.stringify({ score: kitten.score }),
+    });
+ } 
 
 
   console.log(catImg.src);
