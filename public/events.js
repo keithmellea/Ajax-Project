@@ -18,23 +18,20 @@ const getKittenImg = async () => {
 let upvote = document.getElementById("upvote");
 let downvote = document.getElementById("downvote");
 
-upvote.addEventListener("submit", async (e) => {
+upvote.addEventListener("click", async (e) => {
     e.preventDefault();
-    //const res = await kittenUpvote(score)
+    let counter = document.querySelector('.score')
+    let score = await kittenUpvote()
+    counter.innerHTML= score
 })
+
  async function kittenUpvote() {
     const res = await fetch("/kitten/upvote", {
       method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "applications/json",
-    //   },
-    //   body: JSON.stringify({ score: res.score }),
-    
 });
     const json = await res.json()
-    console.log(json)
-     //return await res.json()
-    //return json.score
+    console.log(json.score)
+    return json.score
  }
 
 kittenUpvote()
@@ -66,3 +63,7 @@ async function updateKittenFunc(e) {
 
      console.log(catImg.src);
     }
+
+    downvote.addEventListener('click', () => {
+
+    })
