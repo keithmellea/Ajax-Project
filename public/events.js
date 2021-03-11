@@ -1,15 +1,38 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
+const getKittenImg = async () => {
+  const res = await fetch("/kitten/image");
+  const json = await res.json();
+  let catImg = document.querySelector(".cat-pic");
 
-    const getKittenImg = async () => {
+  if (res.ok) {
+    console.log(res);
+    catImg.src = json.src;
+  } 
+  
+  console.log(catImg.src);
 
-        const res = await fetch('/kitten/image');
-        const json = await res.json()
-        let catImg = document.querySelector('.cat-pic')
+    
+ }
+getKittenImg();
+
+const updateKitten = document.getElementById("new-pic");
+
+updateKitten.addEventListener("click", getKittenImg);
 
 
-        if (res.ok) {
-            catImg.src = kitten.src;
-        } else {
-            catImg.innerHTML = kitten.error
-        }
 })
+
+
+
+
+async function updateKittenFunc(e) {
+    const res = await fetch("/kitten/image");
+    const json = await res.json();
+    let catImg = document.querySelector(".cat-pic");
+     if (res.ok) {
+       console.log(res);
+       catImg.src = json.src;
+     }
+
+     console.log(catImg.src);
+    }
