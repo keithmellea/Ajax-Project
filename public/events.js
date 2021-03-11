@@ -64,6 +64,39 @@ async function updateKittenFunc(e) {
      console.log(catImg.src);
     }
 
-    downvote.addEventListener('click', () => {
+downvote.addEventListener("click", async (e) => {
+  e.preventDefault();
+  let counter = document.querySelector(".score");
+  let score = await kittenDownvote();
+  counter.innerHTML = score;
+});
 
+async function kittenDownvote() {
+  const res = await fetch("/kitten/downvote", {
+    method: "PATCH",
+  });
+  const json = await res.json();
+  console.log(json.score);
+  return json.score;
+}
+
+let commentForm = document.querySelector(".comments");
+
+commentForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const post = document.getElementById("user-comment").nodeValue;
+    const res = await submitPost(comment);
+    console.log(res);
+    commentForm.innerHTML = res;
+})
+
+async function submitPost(comment) {
+    const response = await fetch("/kitten/comments", {
+        method: "POST",
+        headers: {
+            "Content-Type": "applications\json"
+        },
+        body: JSON.stringify({ comments })
     })
+    return await response.json();
+}
