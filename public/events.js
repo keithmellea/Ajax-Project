@@ -20,23 +20,24 @@ let downvote = document.getElementById("downvote");
 
 upvote.addEventListener("submit", async (e) => {
     e.preventDefault();
-
+    //const res = await kittenUpvote(score)
 })
- async function kittenUpvote(score) {
+ async function kittenUpvote() {
     const res = await fetch("/kitten/upvote", {
       method: "PATCH",
-      headers: {
-        "Content-Type": "applications/json",
-      },
-      body: JSON.stringify({ score: res.score }),
-    });
+    //   headers: {
+    //     "Content-Type": "applications/json",
+    //   },
+    //   body: JSON.stringify({ score: res.score }),
+    
+});
     const json = await res.json()
-    console.log(json.score)
-    // return await res.json()
-    return json.score
+    console.log(json)
+     //return await res.json()
+    //return json.score
  }
 
-kittenUpvote(1)
+kittenUpvote()
 
 //   console.log(catImg.src);
 
