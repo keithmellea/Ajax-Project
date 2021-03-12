@@ -80,23 +80,25 @@ async function kittenDownvote() {
   return json.score;
 }
 
-let commentForm = document.querySelector(".comments");
-
+let commentForm = document.querySelector(".comment-form");
+let commentField = document.querySelector(".comments")
 commentForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const post = document.getElementById("user-comment").nodeValue;
-    const res = await submitPost(comment);
-    console.log(res);
-    commentForm.innerHTML = res;
+    const res = await submitPost(e);
+    // const json = await res.json()
+    // console.log(res);
+    // commentField.innerHTML = json;
 })
 
-async function submitPost(comment) {
+async function submitPost() {
     const response = await fetch("/kitten/comments", {
         method: "POST",
         headers: {
-            "Content-Type": "applications\json"
+            "Content-Type": "applications/json"
         },
-        body: JSON.stringify({ comments })
+        body: JSON.stringify({ comment })
     })
-    return await response.json();
+    console.log(response)
+    // return await response.json();
 }
